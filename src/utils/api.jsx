@@ -16,13 +16,28 @@ export default {
         response.data,
       );
   },
-  createProject: (name, price, image = '') => {
+  getPresignedUrl: () => {
+    const url = 'http://localhost:3000/projects/new';
+    return axios.get(url)
+      .then(response =>
+        response.data,
+    );
+  },
+  uploadImage: (url, img) =>
+    axios.put(url, img, {
+      headers: {
+        'Content-Type': img.type,
+      },
+    }).then((response) => {
+      let imageUrl = response.config.url;
+      imageUrl = imageUrl.slice(0, imageUrl.indexOf('?'));
+      return imageUrl;
+    },
+  ),
+  createProject: (project) => {
     const url = 'http://localhost:3000/projects';
-    return axios.post(url, {
-      name,
-      price,
-      image,
-    }).then(response =>
+    return axios.post(url, project)
+      .then(response =>
       response.data);
   },
 };
