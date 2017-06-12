@@ -23,16 +23,15 @@ class Home extends Component {
       height: window.innerHeight,
       activeButton: 0,
     };
+
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('mousewheel', this.handleScroll);
     document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount() {
-    window.removeEventListener('mousewheel', this.handleScroll);
     document.body.style.overflow = 'auto';
   }
 
@@ -72,7 +71,7 @@ class Home extends Component {
 
     return (
       <div className="PageWrapper">
-        <div className="PageContainer" style={pageScroll}>
+        <div className="PageContainer" style={pageScroll} onWheel={this.handleScroll}>
           <div className="Page Page--1"> Hi </div>
           <div className="Page Page--2"> Bye </div>
           <div className="Page Page--3"> Hi again </div>

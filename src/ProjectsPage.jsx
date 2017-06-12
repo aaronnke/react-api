@@ -35,7 +35,7 @@ class ProjectsPage extends Component {
     this.state = {
       projects: null,
       errors: null,
-      search: null,
+      search: '',
     };
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -61,7 +61,8 @@ class ProjectsPage extends Component {
     this.setState({ search });
   }
 
-  handleSearchSubmit() {
+  handleSearchSubmit(e) {
+    e.preventDefault();
     const search = this.state.search;
     api.fetchProjects(search)
       .then(projects =>

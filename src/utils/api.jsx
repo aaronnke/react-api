@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 export default {
-  fetchProjects: (search = '') => {
-    const url = `http://localhost:3000/projects?search=${search}`;
+  fetchProjects: (search) => {
+    let url = 'http://localhost:3000/projects';
+    if (search) url += `?search=${search}`;
     return axios.get(url)
       .then(response =>
         response.data,
