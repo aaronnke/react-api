@@ -1,0 +1,64 @@
+.PageWrapper {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.PageWrapper::after {
+  height: 100vh;
+  background-color: rgba(0,0,0,0.3);
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  pointer-events: none;
+}
+
+.PageContainer {
+  height: 100%;
+  transform: translateY(0);
+  transition: all 1000ms ease;
+}
+
+.Page {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.Page--1 {
+  background-image: url('http://blog.radissonblu.com/wp-content/uploads/2015/01/Head-photo-Interior-design.jpg');
+}
+
+.Page--2 {
+  background-image: url('http://mylandingpage.co/wp-content/uploads/2017/05/apartment-interior-design-new-on-luxury-nanjing-service-apartment-interior-design-unit-e-1jpg.jpg');
+}
+
+.Page--3 {
+  background-image: url('http://startrekmeshes.com/wp-content/uploads/2016/06/Interesting-Maxresdefault-About-Apartment-Interior-Design.jpg');
+}
+
+.ScrollerContainer {
+  position: absolute;
+  right: 24px;
+  top: calc(50vh - 27px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.Scroller {
+  border: 1px solid white;
+  background-color: transparent;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  margin: 4px 0;
+  transition: all 1000ms ease;
+}
+
+.Scroller--active {
+  background-color: white;
+}
