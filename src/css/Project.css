@@ -1,0 +1,11 @@
+.Project {
+  margin-top: 50px;
+}
+
+.ProjectImage {
+  height: 320px;
+  width: 320px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

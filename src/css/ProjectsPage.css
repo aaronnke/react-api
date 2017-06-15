@@ -1,9 +1,24 @@
 .ProjectsNav {
-  margin-top: 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
+  max-width: 1200px;
+  margin: 50px auto 0 auto;
+}
+
+.ProjectsSearchBar__input {
+  height: 32px;
+  padding: 0 8px;
+  margin: 0;
+  border: 1px solid #3bd8ba;
+  font-size: 14px;
+  transition: all 500ms ease-in-out;
+}
+
+.ProjectsSearchBar__input:focus {
+  outline: 0;
+  border-color: #62cebe;
 }
 
 .ProjectsNav__link {

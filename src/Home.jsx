@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Home.css';
+import './css/Home.css';
 
-function Button(props) {
-  const classes = props.id === props.active ? 'Scroller Scroller--active' : 'Scroller';
+function ScrollerContainer(props) {
+  const scrollers = [];
+  const activeButton = props.activeButton;
+  for (let i = 0; i < props.buttonCount; i += 1) {
+    const className = i === activeButton ? 'Scroller Scroller--active' : 'Scroller';
+    const scroller = <li key={i} className={className} />;
+    scrollers.push(scroller);
+  }
+
   return (
-    <div className={classes} />
+    <ol className="ScrollerContainer">
+      {scrollers}
+    </ol>
   );
 }
 
-Button.propTypes = {
-  id: PropTypes.number.isRequired,
-  active: PropTypes.number.isRequired,
+ScrollerContainer.propTypes = {
+  buttonCount: PropTypes.number.isRequired,
+  activeButton: PropTypes.number.isRequired,
 };
 
 class Home extends Component {
@@ -54,7 +63,7 @@ class Home extends Component {
     }
     setTimeout(() => {
       this.setState({ isScrolling: false });
-    }, 1500);
+    }, 1200);
     return true;
   }
 
@@ -63,22 +72,14 @@ class Home extends Component {
       transform: `translateY(${this.state.scroll}px)`,
     };
 
-    const buttons = [0, 1, 2].map(index =>
-      (
-        <Button key={index} id={index} active={this.state.activeButton} />
-      ),
-    );
-
     return (
       <div className="PageWrapper">
         <div className="PageContainer" style={pageScroll} onWheel={this.handleScroll}>
-          <div className="Page Page--1"> Hi </div>
-          <div className="Page Page--2"> Bye </div>
-          <div className="Page Page--3"> Hi again </div>
+          <div className="Page Page--1"> Find inspiration. </div>
+          <div className="Page Page--2"> Work with professionals. </div>
+          <div className="Page Page--3"> Purchase products. </div>
         </div>
-        <div className="ScrollerContainer">
-          {buttons}
-        </div>
+        <ScrollerContainer buttonCount={3} activeButton={this.state.activeButton} />
       </div>
     );
   }

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './Project.css';
+import './css/Project.css';
 import api from './utils/api';
 
-class Project extends Component {
+class Project extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -26,11 +26,13 @@ class Project extends Component {
   }
 
   render() {
+    const image = this.state.image;
     const name = this.state.name;
     const price = this.state.price;
 
     return (
       <div className="Project">
+        <div className="ProjectImage" style={{ backgroundImage: `url(${image})` }} />
         <p>{name}</p>
         <p>{price}</p>
       </div>

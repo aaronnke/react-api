@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './NewProject.css';
+import './css/NewProject.css';
 import api from './utils/api';
 
-class NewProject extends Component {
+class NewProject extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -15,8 +15,7 @@ class NewProject extends Component {
     };
 
     this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -36,14 +35,10 @@ class NewProject extends Component {
       );
   }
 
-  handleNameChange(e) {
-    const name = e.target.value;
-    this.setState({ name });
-  }
-
-  handlePriceChange(e) {
-    const price = e.target.value;
-    this.setState({ price });
+  handleInputChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value });
   }
 
   handleSubmit(e) {
@@ -77,11 +72,11 @@ class NewProject extends Component {
               Project Name
             </label>
             <input
-              id="name"
+              name="name"
               className="NewProject__input"
               type="text"
               value={this.state.name}
-              onChange={this.handleNameChange}
+              onChange={this.handleInputChange}
             />
           </div>
           <div className="NewProject__group">
@@ -89,11 +84,11 @@ class NewProject extends Component {
               Project Price
             </label>
             <input
-              id="price"
+              name="price"
               className="NewProject__input"
               type="number"
               value={this.state.price}
-              onChange={this.handlePriceChange}
+              onChange={this.handleInputChange}
             />
           </div>
           <button

@@ -1,8 +1,34 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import api from './utils/api';
-import './ProjectsPage.css';
+import './css/ProjectsPage.css';
+
+function SearchBar(props) {
+  return (
+    <form className={props.className} onSubmit={props.handleSubmit}>
+      <input
+        className={`${props.className}__input`}
+        type="text"
+        placeholder="search.."
+        value={props.value}
+        onChange={props.handleChange}
+      />
+    </form>
+  );
+}
+
+SearchBar.propTypes = {
+  className: PropTypes.string,
+  value: PropTypes.string,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
+
+SearchBar.defaultProps = {
+  className: '',
+  value: '',
+};
 
 function Projects(props) {
   const projects = props.projects && props.projects.map(project =>
@@ -25,15 +51,15 @@ function Projects(props) {
 }
 
 Projects.propTypes = {
-  projects: PropTypes.array.isRequired,
+  projects: PropTypes.arrayOf(PropTypes.object).isRequired,
   baseUrl: PropTypes.string.isRequired,
 };
 
-class ProjectsPage extends Component {
+class ProjectsPage extends PureComponent {
   constructor() {
     super();
     this.state = {
-      projects: null,
+      projects: [],
       errors: null,
       search: '',
     };
@@ -52,7 +78,7 @@ class ProjectsPage extends Component {
       ).catch(errors =>
         this.setState({
           errors,
-          projects: null,
+          projects: [],
         }));
   }
 
@@ -73,29 +99,26 @@ class ProjectsPage extends Component {
       ).catch(errors =>
         this.setState({
           errors,
-          projects: null,
+          projects: [],
         }));
   }
 
   render() {
     const projects = this.state.projects;
     const baseUrl = this.props.match.url;
-    const content = projects ?
+    const content = projects.length > 0 ?
       <Projects projects={projects} baseUrl={baseUrl} /> :
-      <p> Loading.. </p>;
+      <p> Could not find any projects with your search term. </p>;
 
     return (
       <div>
         <div className="ProjectsNav">
-          <form className="" onSubmit={this.handleSearchSubmit}>
-            <input
-              id="search"
-              className="ProjectsNav__search"
-              type="text"
-              value={this.state.search}
-              onChange={this.handleSearchChange}
-            />
-          </form>
+          <SearchBar
+            className="ProjectsSearchBar"
+            value={this.state.search}
+            handleChange={this.handleSearchChange}
+            handleSubmit={this.handleSearchSubmit}
+          />
           <Link to={`${baseUrl}/new`} className="ProjectsNav__link Button">
             Create Project
           </Link>
