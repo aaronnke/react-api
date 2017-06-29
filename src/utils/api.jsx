@@ -40,4 +40,10 @@ export default {
       .then(response =>
       response.data);
   },
+  createUser: (params) => {
+    const url = 'http://localhost:3000/users';
+    return axios.post(url, { user: params })
+      .then(response =>
+      response.data);
+  },
 };

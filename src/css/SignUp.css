@@ -1,0 +1,14 @@
+.SignUpPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px);
+}
+
+.SignUpForm__submit {
+  background-color: #62cebe;
+}
+
+.SignUpForm__submit[disabled] {
+  background-color: #dadada;
+}

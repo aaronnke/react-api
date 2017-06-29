@@ -29,14 +29,14 @@ class Home extends Component {
     this.state = {
       scroll: 0,
       isScrolling: false,
-      height: window.innerHeight,
+      height: window.innerHeight - 50,
       activeButton: 0,
     };
 
     this.handleScroll = this.handleScroll.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     document.body.style.overflow = 'hidden';
   }
 

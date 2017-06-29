@@ -2,6 +2,14 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .NavContainer {
   height: 50px;
   width: 100%;
@@ -28,6 +36,15 @@ body {
   text-decoration: none;
 }
 
+.Nav__link--right {
+  margin-left: auto;
+}
+
+.Main {
+  margin-top: 50px;
+  min-height: calc(100vh - 50px);
+}
+
 .Button {
   display: block;
   position: relative;
@@ -42,6 +59,7 @@ body {
   outline: none;
   border: 0;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .Button[disabled] {
